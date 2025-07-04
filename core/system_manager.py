@@ -22,6 +22,7 @@ from utils.error_recovery import ErrorRecoverySystem
 from utils.memory_manager import MemoryManager
 from auth.enhanced_kite_auth import EnhancedKiteAuthenticator as KiteAuthenticator
 from utils.github_auto_push import GitHubAutoPush
+from utils.auto_backup import backup_after_improvement, backup_after_fix
 
 logger = logging.getLogger('trading_system.system_manager')
 
