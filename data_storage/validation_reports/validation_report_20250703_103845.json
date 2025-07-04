@@ -1,0 +1,74 @@
+{
+  "start_time": "2025-07-03T10:38:42.295175",
+  "tests_passed": 4,
+  "tests_failed": 5,
+  "test_results": [
+    {
+      "validation_name": "System Requirements",
+      "passed": false,
+      "details": "Requirements not met",
+      "timestamp": "2025-07-03T10:38:42.311971",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Kite API Connection",
+      "passed": true,
+      "details": "REAL API successfully connected",
+      "timestamp": "2025-07-03T10:38:43.123628",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Data Manager",
+      "passed": true,
+      "details": "REAL data sources initialized",
+      "timestamp": "2025-07-03T10:38:43.148813",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Market Data",
+      "passed": false,
+      "details": "'DataManager' object has no attribute 'get_market_data'",
+      "timestamp": "2025-07-03T10:38:43.148813",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Signal Generation",
+      "passed": false,
+      "details": "'DataManager' object has no attribute 'get_market_data'",
+      "timestamp": "2025-07-03T10:38:43.150960",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Risk Management",
+      "passed": false,
+      "details": "'DataManager' object has no attribute 'get_market_data'",
+      "timestamp": "2025-07-03T10:38:43.150960",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Telegram Notifications",
+      "passed": true,
+      "details": "REAL trading alerts validated",
+      "timestamp": "2025-07-03T10:38:44.152233",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Logging System",
+      "passed": true,
+      "details": "REAL trading logs working",
+      "timestamp": "2025-07-03T10:38:44.154195",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "System Performance",
+      "passed": false,
+      "details": "'DataManager' object has no attribute 'get_market_data'",
+      "timestamp": "2025-07-03T10:38:45.192009",
+      "data_type": "REAL_DATA_VALIDATION"
+    }
+  ],
+  "system_health": {},
+  "end_time": "2025-07-03T10:38:45.193007",
+  "success_rate": 44.44444444444444,
+  "overall_status": "NOT_READY"
+}

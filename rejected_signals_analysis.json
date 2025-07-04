@@ -1,0 +1,78 @@
+[
+  {
+    "timestamp": "2025-07-04T02:08:54.584919",
+    "instrument": "NIFTY",
+    "strike": 0,
+    "direction": "CE",
+    "rejection_reason": "No valid strikes with live LTP found",
+    "rejection_category": "price_validation",
+    "market_data": {
+      "spot_data": {
+        "status": "success",
+        "prices": {
+          "NIFTY": 25500,
+          "BANKNIFTY": 57000
+        }
+      },
+      "technical_data": {
+        "status": "success",
+        "NIFTY": {
+          "rsi": 28,
+          "trend": "bullish",
+          "macd": {
+            "signal": "bullish",
+            "macd": 0.8,
+            "histogram": 0.3
+          },
+          "volume_trend": "increasing"
+        }
+      },
+      "options_data": {
+        "status": "success",
+        "NIFTY": {
+          "status": "success",
+          "pcr": 0.65,
+          "options_data": {
+            "25500_CE": {
+              "oi": 1500000,
+              "volume": 150000,
+              "iv": 0.18
+            },
+            "25500_PE": {
+              "oi": 900000,
+              "volume": 80000,
+              "iv": 0.22
+            }
+          },
+          "max_pain": 25400
+        }
+      },
+      "vix_data": {
+        "status": "success",
+        "vix": 14.2
+      },
+      "global_data": {
+        "status": "success",
+        "indices": {
+          "SGX_NIFTY": 25580,
+          "DOW_CHANGE": 1.5,
+          "NASDAQ_CHANGE": 1.2
+        }
+      },
+      "fii_dii_data": {
+        "status": "success",
+        "fii_flow": 2800,
+        "dii_flow": 2200
+      },
+      "news_data": {
+        "status": "success",
+        "sentiment": "very_positive",
+        "sentiment_score": 0.85
+      }
+    },
+    "signal_data": {
+      "ltp": 0,
+      "validation_type": "no_valid_strikes"
+    }
+  }
+]

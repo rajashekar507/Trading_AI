@@ -1,0 +1,122 @@
+# VLR_AI Trading System - Git Ignore File
+
+# Environment Variables
+.env
+.env.local
+.env.production
+
+# Credentials and Sensitive Files
+.google_credentials.json
+google_credentials.json
+*_credentials.json
+auth/kite_token.json
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+logs/
+*.log
+trading_system.log
+health_report_*.json
+
+# Data Storage
+data_storage/databases/
+data_storage/exports/
+*.db
+*.sqlite
+*.sqlite3
+
+# Backups
+backups/
+backup_*/
+*.backup
+
+# Test Files
+test_*.py
+tests/temp/
+coverage/
+.coverage
+.pytest_cache/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary Files
+temp/
+tmp/
+*.tmp
+*.temp
+
+# Documentation Build
+docs/_build/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Trading Data
+positions_*.json
+trades_*.json
+balance_history.json
+
+# 🔐 ADDITIONAL SECURITY PATTERNS
+*api_key*
+*access_token*
+*secret_key*
+*password*
+*token*
+KITE_*
+DHAN_*
+TELEGRAM_*
+NEWS_API_*
+paper_trading_data.json
+live_trading_data.json
+real_positions.json
+actual_trades.json
+broker_responses/
+
+# 🚫 NEVER COMMIT THESE PATTERNS
+*password*
+*secret*
+*private*
+*confidential*
+*sensitive*
+*auth*
+*credential*

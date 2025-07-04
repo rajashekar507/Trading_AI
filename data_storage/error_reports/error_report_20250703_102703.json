@@ -1,0 +1,14 @@
+{
+  "timestamp": "2025-07-03T10:27:03.438012",
+  "statistics": {
+    "total_errors": 0,
+    "recovered_errors": 0,
+    "failed_recoveries": 0,
+    "recovery_rate": 0.0,
+    "recent_errors_24h": 0,
+    "error_types_24h": {},
+    "circuit_breaker_status": {}
+  },
+  "recent_errors": [],
+  "circuit_breakers": {}
+}

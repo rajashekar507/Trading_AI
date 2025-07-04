@@ -1,0 +1,177 @@
+{
+  "autonomous_zencoder_config": {
+    "monitoring": {
+      "system_health_interval": 30,
+      "health_check_interval": 60,
+      "improvement_analysis_interval": 300,
+      "log_analysis_interval": 120,
+      "performance_optimization_interval": 600,
+      "backup_interval": 3600
+    },
+    "thresholds": {
+      "cpu_usage_warning": 70.0,
+      "cpu_usage_critical": 85.0,
+      "memory_usage_warning": 75.0,
+      "memory_usage_critical": 90.0,
+      "disk_usage_warning": 80.0,
+      "disk_usage_critical": 95.0,
+      "error_rate_warning": 10,
+      "error_rate_critical": 25
+    },
+    "auto_fix": {
+      "enabled": true,
+      "safe_fixes_only": true,
+      "backup_before_fix": true,
+      "max_fixes_per_hour": 10,
+      "allowed_fix_types": [
+        "unicode_error",
+        "import_error",
+        "performance_optimization",
+        "cleanup_operations"
+      ],
+      "restricted_fix_types": [
+        "api_credential_changes",
+        "core_logic_modifications",
+        "database_schema_changes"
+      ]
+    },
+    "improvements": {
+      "auto_implement": true,
+      "safe_improvements_only": true,
+      "max_improvements_per_day": 5,
+      "priority_levels": {
+        "critical": {
+          "auto_implement": false,
+          "require_approval": true
+        },
+        "high": {
+          "auto_implement": false,
+          "require_approval": true
+        },
+        "medium": {
+          "auto_implement": true,
+          "require_approval": false
+        },
+        "low": {
+          "auto_implement": true,
+          "require_approval": false
+        }
+      }
+    },
+    "backup": {
+      "enabled": true,
+      "max_backups": 20,
+      "backup_before_changes": true,
+      "compress_backups": false,
+      "verify_backup_integrity": true,
+      "backup_locations": [
+        "backups/"
+      ]
+    },
+    "notifications": {
+      "telegram_alerts": true,
+      "email_alerts": false,
+      "alert_levels": [
+        "critical_errors",
+        "system_recovery",
+        "major_improvements",
+        "backup_failures"
+      ],
+      "quiet_hours": {
+        "enabled": false,
+        "start_time": "22:00",
+        "end_time": "08:00"
+      }
+    },
+    "security": {
+      "encrypt_sensitive_data": false,
+      "secure_backup_storage": true,
+      "audit_all_changes": true,
+      "require_approval_for_sensitive_changes": true,
+      "sensitive_files": [
+        ".env",
+        "src/config/settings.py",
+        "autonomous_zencoder.db"
+      ]
+    },
+    "performance": {
+      "max_cpu_usage": 50.0,
+      "max_memory_usage": 512,
+      "optimize_database_queries": true,
+      "cache_frequently_accessed_data": true,
+      "use_connection_pooling": false
+    },
+    "logging": {
+      "log_level": "INFO",
+      "max_log_size": "100MB",
+      "log_rotation": false,
+      "keep_logs_days": 30,
+      "detailed_error_logging": true,
+      "performance_logging": true
+    },
+    "recovery": {
+      "auto_recovery_enabled": true,
+      "max_recovery_attempts": 3,
+      "recovery_delay_seconds": 60,
+      "fallback_to_safe_mode": true,
+      "emergency_shutdown_threshold": 95.0
+    }
+  },
+  "system_components": {
+    "critical_files": [
+      "src/config/settings.py",
+      "src/core/system_manager.py",
+      "src/analysis/trade_signal_engine.py",
+      "src/execution/trade_executor.py",
+      ".env"
+    ],
+    "monitored_processes": [
+      "python.*trading",
+      "python.*system",
+      "python.*run_system"
+    ],
+    "api_endpoints": [
+      {
+        "name": "Kite Connect",
+        "url": "https://api.kite.trade",
+        "critical": true
+      },
+      {
+        "name": "Yahoo Finance",
+        "url": "https://finance.yahoo.com",
+        "critical": false
+      },
+      {
+        "name": "Telegram",
+        "url": "https://api.telegram.org",
+        "critical": false
+      }
+    ]
+  },
+  "fix_templates": {
+    "unicode_error": {
+      "pattern": "UnicodeEncodeError|charmap.*codec",
+      "fix_strategy": "replace_unicode_characters",
+      "backup_required": true,
+      "auto_fix_safe": true
+    },
+    "import_error": {
+      "pattern": "ImportError|ModuleNotFoundError",
+      "fix_strategy": "install_missing_package",
+      "backup_required": false,
+      "auto_fix_safe": true
+    },
+    "api_timeout": {
+      "pattern": "timeout|connection.*error",
+      "fix_strategy": "implement_retry_logic",
+      "backup_required": true,
+      "auto_fix_safe": true
+    },
+    "memory_leak": {
+      "pattern": "memory.*error|out of memory",
+      "fix_strategy": "optimize_memory_usage",
+      "backup_required": false,
+      "auto_fix_safe": true
+    }
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "start_time": "2025-07-03T10:57:26.635636",
+  "tests_passed": 8,
+  "tests_failed": 1,
+  "test_results": [
+    {
+      "validation_name": "System Requirements",
+      "passed": true,
+      "details": "All requirements met",
+      "timestamp": "2025-07-03T10:57:26.643459",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Kite API Connection",
+      "passed": true,
+      "details": "REAL API successfully connected",
+      "timestamp": "2025-07-03T10:57:27.379284",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Data Manager",
+      "passed": true,
+      "details": "REAL data sources initialized",
+      "timestamp": "2025-07-03T10:57:28.591799",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Market Data",
+      "passed": true,
+      "details": "REAL NIFTY: 25532.1, BANKNIFTY: 57100.1",
+      "timestamp": "2025-07-03T10:57:30.936932",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Signal Generation",
+      "passed": true,
+      "details": "No signals - REAL market conditions normal",
+      "timestamp": "2025-07-03T10:57:34.077315",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Risk Management",
+      "passed": true,
+      "details": "REAL risk score: 45, Approved: True",
+      "timestamp": "2025-07-03T10:57:36.455994",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Telegram Notifications",
+      "passed": true,
+      "details": "REAL trading alerts validated",
+      "timestamp": "2025-07-03T10:57:37.440510",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Logging System",
+      "passed": true,
+      "details": "REAL trading logs working",
+      "timestamp": "2025-07-03T10:57:37.440510",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "System Performance",
+      "passed": false,
+      "details": "REAL trading issues: High memory usage - may affect REAL trading",
+      "timestamp": "2025-07-03T10:57:41.879758",
+      "data_type": "REAL_DATA_VALIDATION"
+    }
+  ],
+  "system_health": {
+    "cpu_percent": 12.5,
+    "memory_percent": 91.3,
+    "disk_percent": 64.52078536183781,
+    "real_data_response_time_ms": 3412.370443344116
+  },
+  "end_time": "2025-07-03T10:57:41.881756",
+  "success_rate": 88.88888888888889,
+  "overall_status": "READY_FOR_REAL_TRADING"
+}

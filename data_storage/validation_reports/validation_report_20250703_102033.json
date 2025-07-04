@@ -1,0 +1,74 @@
+{
+  "start_time": "2025-07-03T10:20:30.219105",
+  "tests_passed": 3,
+  "tests_failed": 6,
+  "test_results": [
+    {
+      "validation_name": "System Requirements",
+      "passed": false,
+      "details": "Requirements not met",
+      "timestamp": "2025-07-03T10:20:30.243127",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Kite API Connection",
+      "passed": false,
+      "details": "'EnhancedKiteAuthenticator' object has no attribute 'initialize'",
+      "timestamp": "2025-07-03T10:20:30.245808",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Data Manager",
+      "passed": true,
+      "details": "REAL data sources initialized",
+      "timestamp": "2025-07-03T10:20:30.255236",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Market Data",
+      "passed": false,
+      "details": "'DataManager' object has no attribute 'get_market_data'",
+      "timestamp": "2025-07-03T10:20:30.256234",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Signal Generation",
+      "passed": false,
+      "details": "'DataManager' object has no attribute 'get_market_data'",
+      "timestamp": "2025-07-03T10:20:30.259258",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Risk Management",
+      "passed": false,
+      "details": "'DataManager' object has no attribute 'get_market_data'",
+      "timestamp": "2025-07-03T10:20:30.261251",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Telegram Notifications",
+      "passed": true,
+      "details": "REAL trading alerts validated",
+      "timestamp": "2025-07-03T10:20:31.821534",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "Logging System",
+      "passed": true,
+      "details": "REAL trading logs working",
+      "timestamp": "2025-07-03T10:20:31.823536",
+      "data_type": "REAL_DATA_VALIDATION"
+    },
+    {
+      "validation_name": "System Performance",
+      "passed": false,
+      "details": "'DataManager' object has no attribute 'get_market_data'",
+      "timestamp": "2025-07-03T10:20:33.171316",
+      "data_type": "REAL_DATA_VALIDATION"
+    }
+  ],
+  "system_health": {},
+  "end_time": "2025-07-03T10:20:33.174794",
+  "success_rate": 33.33333333333333,
+  "overall_status": "NOT_READY"
+}
