@@ -21,6 +21,7 @@ from utils.sheets_integration_service import SheetsIntegrationService
 from utils.error_recovery import ErrorRecoverySystem
 from utils.memory_manager import MemoryManager
 from auth.enhanced_kite_auth import EnhancedKiteAuthenticator as KiteAuthenticator
+from utils.github_auto_push import GitHubAutoPush
 
 logger = logging.getLogger('trading_system.system_manager')
 
