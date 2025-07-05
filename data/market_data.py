@@ -90,10 +90,9 @@ class MarketDataProvider:
             symbol_info = self.SYMBOLS[symbol]
             logger.info(f"[REFRESH] Fetching REAL data for {symbol} (ID: {symbol_info['id']})...")
             
-            # Get live quote from Dhan
-            quote_response = self.dhan.get_quote(
-                security_id=str(symbol_info['id']),
-                exchange_segment=self.IDX_SEGMENT
+            # Get live quote from Dhan - CORRECTED method name
+            quote_response = self.dhan.ohlc_data(
+                securities={self.IDX_SEGMENT: [symbol_info['id']]}
             )
             
             if not quote_response:
@@ -102,17 +101,33 @@ class MarketDataProvider:
             if quote_response.get('status') != 'success':
                 raise Exception(f"API Error: {quote_response.get('message', 'Unknown error')}")
             
-            # Extract data
-            data = quote_response.get('data', {})
-            if not data:
+            # Extract data from OHLC response
+            response_data = quote_response.get('data', {})
+            if not response_data:
                 raise Exception("No data in API response")
             
-            # Parse the data
-            ltp = float(data.get('LTP', 0))
-            prev_close = float(data.get('prevClose', ltp))
-            high = float(data.get('high', ltp))
-            low = float(data.get('low', ltp))
-            volume = int(data.get('volume', 0))
+            # Navigate the nested structure: data -> data -> IDX_I -> security_id
+            nested_data = response_data.get('data', {})
+            if not nested_data:
+                raise Exception("No nested data in API response")
+            
+            segment_data = nested_data.get(self.IDX_SEGMENT, {})
+            if not segment_data:
+                raise Exception(f"No data for segment {self.IDX_SEGMENT}")
+            
+            security_data = segment_data.get(str(symbol_info['id']), {})
+            if not security_data:
+                raise Exception(f"No data for security ID {symbol_info['id']}")
+            
+            # Parse the OHLC data
+            ltp = float(security_data.get('last_price', 0))
+            ohlc = security_data.get('ohlc', {})
+            
+            prev_close = float(ohlc.get('open', ltp))  # Use open as prev close approximation
+            high = float(ohlc.get('high', ltp))
+            low = float(ohlc.get('low', ltp))
+            close = float(ohlc.get('close', ltp))
+            volume = int(security_data.get('volume', 0))
             
             # Calculate change
             change = ltp - prev_close
@@ -169,7 +184,7 @@ class MarketDataProvider:
                     'status': 'failed'
                 }
             
-            # Get expiry list first
+            # Get expiry list first - CORRECTED method name
             expiry_response = self.dhan.expiry_list(
                 under_security_id=symbol_id,
                 under_exchange_segment=self.IDX_SEGMENT
@@ -197,7 +212,7 @@ class MarketDataProvider:
             # Rate limiting
             time.sleep(2)
             
-            # Get option chain
+            # Get option chain - CORRECTED method name
             option_chain = self.dhan.option_chain(
                 under_security_id=symbol_id,
                 under_exchange_segment=self.IDX_SEGMENT,

@@ -138,7 +138,6 @@ class TechnicalAnalyzer:
     def get_indicator_signals(self, symbol="NIFTY", prices=None):
         """Get all indicator signals and generate recommendation"""
         
-        # For demo, using simulated prices if not provided
         if prices is None:
             # Generate realistic price data
             base_price = 25500 if symbol == "NIFTY" else 57000

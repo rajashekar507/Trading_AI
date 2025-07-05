@@ -1,7 +1,6 @@
 """
 Memory Optimization System for VLR_AI Trading System
 Implements memory management, garbage collection, and usage monitoring for REAL data processing
-IMPORTANT: Optimizes memory for REAL market data processing - NO mock data
 """
 
 import gc
@@ -24,14 +23,14 @@ class MemoryOptimizer:
     def __init__(self, settings):
         self.settings = settings
         
-        # Memory thresholds
-        self.warning_threshold = getattr(settings, 'MEMORY_WARNING_THRESHOLD', 80)  # 80%
-        self.critical_threshold = getattr(settings, 'MEMORY_CRITICAL_THRESHOLD', 90)  # 90%
-        self.cleanup_threshold = getattr(settings, 'MEMORY_CLEANUP_THRESHOLD', 85)  # 85%
+        # Memory thresholds - OPTIMIZED for better performance
+        self.warning_threshold = getattr(settings, 'MEMORY_WARNING_THRESHOLD', 70)  # 70% (reduced)
+        self.critical_threshold = getattr(settings, 'MEMORY_CRITICAL_THRESHOLD', 85)  # 85% (reduced)
+        self.cleanup_threshold = getattr(settings, 'MEMORY_CLEANUP_THRESHOLD', 75)  # 75% (reduced)
         
-        # Monitoring settings
-        self.monitoring_interval = getattr(settings, 'MEMORY_MONITORING_INTERVAL', 30)  # 30 seconds
-        self.cleanup_interval = getattr(settings, 'MEMORY_CLEANUP_INTERVAL', 300)  # 5 minutes
+        # Monitoring settings - OPTIMIZED for better performance
+        self.monitoring_interval = getattr(settings, 'MEMORY_MONITORING_INTERVAL', 15)  # 15 seconds (more frequent)
+        self.cleanup_interval = getattr(settings, 'MEMORY_CLEANUP_INTERVAL', 120)  # 2 minutes (more frequent)
         
         # Memory tracking
         self.memory_history = []

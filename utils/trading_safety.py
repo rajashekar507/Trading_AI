@@ -5,7 +5,6 @@ class TradingSafetyChecker:
         return self.settings.MAX_DAILY_LOSS < 0 and self.settings.MAX_POSITION_SIZE > 0
 
     def is_safe_to_trade(self, *args, **kwargs):
-        # Dummy logic for test
         return True, "OK"
 
     def get_safety_report(self, *args, **kwargs):

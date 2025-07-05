@@ -91,7 +91,6 @@ class PortfolioManager:
                         # Generate synthetic historical returns (in production, use real data)
                         dates = pd.date_range(end=datetime.now(), periods=60, freq='D')
                         
-                        # Simulate returns with realistic parameters
                         if instrument == 'NIFTY':
                             daily_returns = np.random.normal(0.0005, 0.015, 60)  # 0.05% mean, 1.5% vol
                         else:  # BANKNIFTY

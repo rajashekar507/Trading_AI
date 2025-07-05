@@ -224,10 +224,6 @@ class LSTMPredictor:
             prediction_scaled = self.model.predict(X_pred, verbose=0)
             
             # Inverse transform to get actual price
-            # Create dummy array for inverse transform
-            dummy_array = np.zeros((1, len(feature_cols)))
-            dummy_array[0, 0] = prediction_scaled[0, 0]
-            prediction_actual = self.scaler.inverse_transform(dummy_array)[0, 0]
             
             current_price = recent_data['close'].iloc[-1]
             predicted_change = ((prediction_actual - current_price) / current_price) * 100

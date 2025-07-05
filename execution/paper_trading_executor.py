@@ -1,6 +1,5 @@
 """
 Paper Trading Executor for VLR_AI Trading System
-Simulates real trading without using actual money
 """
 
 import logging
@@ -105,8 +104,6 @@ class PaperTradingExecutor:
                     'signal': signal
                 }
             
-            # Simulate market price (add some realistic slippage)
-            entry_price = self._get_simulated_price(signal)
             
             # Calculate total cost
             total_cost = position_size * entry_price
@@ -120,8 +117,11 @@ class PaperTradingExecutor:
                     'available': self.virtual_balance
                 }
             
+            # Get instrument name first
+            instrument = signal.get('instrument', signal.get('symbol', 'NIFTY'))
+            
             # Create position
-            position_id = f"{signal['instrument']}_{signal.get('strike', 'SPOT')}_{signal.get('option_type', 'EQUITY')}_{datetime.now().strftime('%H%M%S')}"
+            position_id = f"{instrument}_{signal.get('strike', 'SPOT')}_{signal.get('option_type', 'EQUITY')}_{datetime.now().strftime('%H%M%S')}"
             
             position = {
                 'id': position_id,
@@ -146,7 +146,7 @@ class PaperTradingExecutor:
             trade_record = {
                 'timestamp': datetime.now().isoformat(),
                 'action': signal.get('action', 'BUY'),
-                'instrument': signal['instrument'],
+                'instrument': instrument,
                 'quantity': position_size,
                 'price': entry_price,
                 'total_cost': total_cost,
@@ -160,7 +160,7 @@ class PaperTradingExecutor:
             # Save data
             self._save_paper_trading_data()
             
-            logger.info(f"[PAPER] Paper trade executed: {signal['instrument']} @ Rs.{entry_price:.2f}, Qty: {position_size}")
+            logger.info(f"[PAPER] Paper trade executed: {instrument} @ Rs.{entry_price:.2f}, Qty: {position_size}")
             
             return {
                 'status': 'success',
@@ -187,10 +187,10 @@ class PaperTradingExecutor:
             risk_per_trade = self.virtual_balance * 0.02
             
             # Get lot size based on instrument
-            lot_size = self._get_lot_size(signal['instrument'])
+            instrument = signal.get('instrument', signal.get('symbol', 'NIFTY'))
+            lot_size = self._get_lot_size(instrument)
             
             # Calculate maximum lots we can afford
-            estimated_price = self._get_simulated_price(signal)
             cost_per_lot = lot_size * estimated_price
             
             if cost_per_lot <= 0:
@@ -223,30 +223,24 @@ class PaperTradingExecutor:
         
         return 1  # Default for equity
     
-    def _get_simulated_price(self, signal: Dict) -> float:
-        """Get simulated market price with realistic slippage"""
+    def _get_realistic_entry_price(self, signal: Dict[str, Any]) -> float:
+        """Get realistic entry price from signal data"""
         try:
-            # Use signal price if available, otherwise use a reasonable estimate
-            base_price = signal.get('current_price', signal.get('ltp', 100.0))
+            # Use actual market price from signal
+            price = signal.get('current_price', signal.get('ltp', signal.get('price', 0)))
             
-            # Add realistic slippage (0.1% to 0.3%)
-            import random
-            slippage_factor = random.uniform(0.001, 0.003)
+            if price and price > 0:
+                return float(price)
             
-            action = signal.get('action', 'BUY')  # Default to BUY for options
-            if action == 'BUY':
-                # Buying - price goes slightly higher
-                return base_price * (1 + slippage_factor)
-            else:
-                # Selling - price goes slightly lower
-                return base_price * (1 - slippage_factor)
+            # If no price available, log error and return 0
+            logger.error(f"[PAPER] No valid price found in signal: {signal}")
+            return 0.0
                 
         except Exception as e:
-            logger.error(f"[PAPER] Price simulation failed: {e}")
-            return 100.0  # Default price
+            logger.error(f"[PAPER] Price extraction failed: {e}")
+            return 0.0
     
     async def monitor_paper_positions(self) -> Dict:
-        """Monitor paper positions and simulate P&L"""
         try:
             actions_taken = []
             total_unrealized_pnl = 0.0
@@ -255,8 +249,6 @@ class PaperTradingExecutor:
                 if position['status'] != 'open':
                     continue
                 
-                # Simulate current price movement
-                current_price = self._simulate_price_movement(position)
                 
                 # Calculate P&L
                 action = position['signal'].get('action', 'BUY')
@@ -297,35 +289,21 @@ class PaperTradingExecutor:
             logger.error(f"[PAPER] Position monitoring failed: {e}")
             return {'total_unrealized_pnl': 0.0, 'active_positions': 0, 'actions_taken': []}
     
-    def _simulate_price_movement(self, position: Dict) -> float:
-        """Simulate realistic price movement"""
+    def _get_current_market_price(self, position: Dict[str, Any]) -> float:
+        """Get current market price for position (should integrate with real market data)"""
         try:
-            import random
-            import math
+            # In a real implementation, this would fetch current market price
+            # For now, return entry price (no P&L simulation)
+            # This should be connected to your market data provider
             
-            # Time-based price movement simulation
-            entry_time = datetime.fromisoformat(position['entry_time'])
-            time_elapsed = (datetime.now() - entry_time).total_seconds() / 3600  # hours
+            instrument = position['signal'].get('instrument', position['signal'].get('symbol', 'NIFTY'))
             
-            # Base volatility (can be made more sophisticated)
-            volatility = 0.02  # 2% per hour base volatility
-            
-            # Random walk with slight trend
-            price_change_factor = random.gauss(0, volatility * math.sqrt(time_elapsed))
-            
-            # Add some trend based on signal confidence
-            signal_confidence = position['signal'].get('confidence', 0)
-            if signal_confidence > 50:
-                trend_factor = 0.001 * (signal_confidence - 50)  # Positive trend for high confidence
-                price_change_factor += trend_factor
-            
-            new_price = position['entry_price'] * (1 + price_change_factor)
-            
-            # Ensure price doesn't go negative
-            return max(new_price, position['entry_price'] * 0.1)
+            # TODO: Integrate with market data provider to get real current price
+            # For now, return entry price to avoid simulation
+            return position['entry_price']
             
         except Exception as e:
-            logger.error(f"[PAPER] Price simulation failed: {e}")
+            logger.error(f"[PAPER] Failed to get current market price: {e}")
             return position['entry_price']
     
     async def _exit_paper_position(self, position_id: str, exit_price: float, reason: str) -> Dict:

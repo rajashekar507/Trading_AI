@@ -1,7 +1,6 @@
 """
 Real-time Trading Dashboard for VLR_AI Trading System
 Displays LIVE market data, positions, performance metrics, and system health
-IMPORTANT: Uses ONLY real market data - NO mock data, NO simulations
 """
 
 import asyncio
@@ -178,7 +177,6 @@ class TradingDashboard:
                 return (error_msg, error_msg, error_msg, error_msg, {}, {}, error_msg, error_msg)
     
     def _fetch_real_time_data(self):
-        """Fetch REAL-TIME data from system manager - NO MOCK DATA"""
         try:
             if self.system_manager:
                 # Get REAL system status
@@ -469,7 +467,6 @@ class TradingDashboard:
                 logger.info(f"[DASHBOARD] Starting Dash server on {self.host}:{self.port}")
                 print(f"🌐 Dashboard starting on http://{self.host}:{self.port}")
                 print("🔴 REAL-TIME TRADING DASHBOARD WITH LIVE MARKET DATA")
-                print("🔴 NO MOCK DATA - NO SIMULATIONS - REAL DATA ONLY")
                 print("[INFO] Features:")
                 print("  - LIVE market data charts from real APIs")
                 print("  - Real-time P&L tracking from actual positions")

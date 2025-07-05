@@ -1,7 +1,6 @@
 """
 Redis Caching System for VLR_AI Trading System
 Implements caching for REAL market data, strategy results, and API responses
-IMPORTANT: Caches ONLY real market data - NO mock data, NO simulations
 """
 
 import asyncio

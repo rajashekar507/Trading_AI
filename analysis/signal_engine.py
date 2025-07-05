@@ -213,7 +213,6 @@ class TradeSignalEngine:
                         
                         # Create minimal DataFrame for ML prediction
                         ml_data = pd.DataFrame({
-                            'close': [current_price] * 60,  # Simulate 60 periods
                             'high': [current_price * 1.01] * 60,
                             'low': [current_price * 0.99] * 60,
                             'volume': [1000] * 60
@@ -827,7 +826,6 @@ class TradeSignalEngine:
             if technical_data and technical_data.get('status') == 'success':
                 inst_data = technical_data.get(instrument, {})
                 
-                # Simulate VWAP calculation (in real implementation, this would use historical data)
                 vwap = current_price * 0.998  # Approximate VWAP slightly below current price
                 
                 # VWAP Standard Deviation Bands

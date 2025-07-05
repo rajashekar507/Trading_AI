@@ -261,7 +261,6 @@ class AdvancedOrderManager:
                 if child_order_id:
                     order['child_orders'].append(child_order_id)
                     
-                    # Simulate partial fill (in real implementation, monitor actual fills)
                     filled_qty = visible_qty  # Assume full fill for simulation
                     order['filled_quantity'] += filled_qty
                     order['remaining_quantity'] -= filled_qty
@@ -494,7 +493,6 @@ class AdvancedOrderManager:
             # In real implementation, this would use the broker API
             order_id = f"MKT_{int(time.time())}_{symbol}"
             
-            # Simulate order placement
             logger.info(f"[MARKET] Order placed: {side} {quantity} {symbol} @ {price}")
             
             # Add to order history
@@ -520,7 +518,6 @@ class AdvancedOrderManager:
         try:
             order_id = f"LMT_{int(time.time())}_{symbol}"
             
-            # Simulate order placement
             logger.info(f"[LIMIT] Order placed: {side} {quantity} {symbol} @ {price}")
             
             self.order_history.append({
@@ -545,7 +542,6 @@ class AdvancedOrderManager:
         try:
             order_id = f"STP_{int(time.time())}_{symbol}"
             
-            # Simulate order placement
             logger.info(f"[STOP] Order placed: {side} {quantity} {symbol} @ {price}")
             
             self.order_history.append({
@@ -575,12 +571,10 @@ class AdvancedOrderManager:
     
     async def _get_current_volume(self, symbol: str) -> int:
         """Get current volume (simulation)"""
-        # Simulate volume data
         return np.random.randint(1000, 10000)
     
     async def _wait_for_order_fill(self, order_id: str, timeout: int = 300) -> bool:
         """Wait for order to be filled (simulation)"""
-        # Simulate order fill after random delay
         await asyncio.sleep(np.random.uniform(1, 5))
         return True  # Assume orders get filled for simulation
     

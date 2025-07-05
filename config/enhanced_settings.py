@@ -1,4 +1,8 @@
 import os
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 class EnhancedSettings:
     def __init__(self):
@@ -48,6 +52,7 @@ class EnhancedSettings:
         self.KITE_API_KEY = os.getenv('KITE_API_KEY', '')
         self.KITE_API_SECRET = os.getenv('KITE_API_SECRET', '')
         self.TELEGRAM_BOT_TOKEN = os.getenv('TELEGRAM_BOT_TOKEN', '')
+        self.TELEGRAM_CHAT_ID = os.getenv('TELEGRAM_CHAT_ID', '')
         self.DATA_REFRESH_INTERVAL = int(os.getenv('DATA_REFRESH_INTERVAL', 60))
         self.CONFIDENCE_THRESHOLD = float(os.getenv('CONFIDENCE_THRESHOLD', 60))
         self.LOGS_DIR = os.getenv('LOGS_DIR', 'logs')

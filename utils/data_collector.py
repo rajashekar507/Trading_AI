@@ -242,7 +242,6 @@ class EnhancedDataCollector:
                 except Exception as e:
                     logger.debug(f"NewsAPI fetch failed: {e}")
             
-            # If no real news data, return empty list instead of mock data
             if not news_data:
                 return []
             

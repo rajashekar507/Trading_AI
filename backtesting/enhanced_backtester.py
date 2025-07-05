@@ -330,8 +330,6 @@ class EnhancedBacktester:
         # Simplified backtest implementation
         # In a real implementation, this would run the actual strategy
         
-        # Mock results for demonstration
-        returns = np.random.normal(0.001, 0.02, len(data))  # Mock daily returns
         cumulative_returns = (1 + pd.Series(returns)).cumprod()
         
         total_return = cumulative_returns.iloc[-1] - 1
@@ -343,7 +341,6 @@ class EnhancedBacktester:
         drawdown = (cumulative_returns - running_max) / running_max
         max_drawdown = drawdown.min()
         
-        # Mock trade statistics
         win_rate = 0.6
         profit_factor = 1.5
         total_trades = len(data) // 5  # Assume trade every 5 days

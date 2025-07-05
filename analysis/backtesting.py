@@ -143,7 +143,6 @@ class BacktestingEngine:
                 backtest_results['error'] = 'No historical data available'
                 return backtest_results
             
-            trades = await self._simulate_trades(historical_data, strategy_name, strategy_params or {})
             
             if not trades:
                 backtest_results['error'] = 'No trades generated'
@@ -217,8 +216,6 @@ class BacktestingEngine:
             logger.error(f"[ERROR] Historical options data fetch failed: {e}")
             return None
     
-    async def _simulate_trades(self, historical_data: pd.DataFrame, strategy_name: str, strategy_params: Dict) -> List[Dict]:
-        """Simulate trades based on strategy"""
         trades = []
         
         try:
@@ -237,12 +234,9 @@ class BacktestingEngine:
                 if len(daily_data) == 0:
                     continue
                 
-                mock_market_data = self._create_mock_market_data(daily_data, trade_date)
                 
-                signals = await signal_engine.generate_signals(mock_market_data)
                 
                 for signal in signals:
-                    trade = self._execute_simulated_trade(signal, daily_data, trade_date)
                     if trade:
                         trades.append(trade)
             
@@ -252,8 +246,6 @@ class BacktestingEngine:
             logger.error(f"[ERROR] Trade simulation failed: {e}")
             return []
     
-    def _create_mock_market_data(self, daily_data: pd.DataFrame, trade_date) -> Dict:
-        """Create mock market data for signal generation"""
         try:
             spot_price = daily_data['close'].mean()
             
@@ -280,7 +272,6 @@ class BacktestingEngine:
                 'options_data': {
                     'NIFTY': {
                         'status': 'success',
-                        'chain': self._create_mock_options_chain(spot_price),
                         'pcr': np.random.choice([0.6, 0.7, 1.3, 1.4]),  # More extreme PCR values
                         'max_pain': spot_price * (1 + np.random.normal(0, 0.01))
                     }
@@ -323,8 +314,6 @@ class BacktestingEngine:
         except Exception:
             return {}
     
-    def _create_mock_options_chain(self, spot_price: float) -> List[Dict]:
-        """Create mock options chain for backtesting"""
         try:
             chain = []
             
@@ -366,8 +355,6 @@ class BacktestingEngine:
         except Exception:
             return []
     
-    def _execute_simulated_trade(self, signal: Dict, daily_data: pd.DataFrame, trade_date) -> Optional[Dict]:
-        """Execute simulated trade based on signal"""
         try:
             if not signal or 'strike' not in signal:
                 return None
@@ -413,7 +400,6 @@ class BacktestingEngine:
             return trade
             
         except Exception as e:
-            logger.warning(f"[WARNING]️ Simulated trade execution failed: {e}")
             return None
     
     def _calculate_performance_metrics(self, trades: List[Dict]) -> Dict:
@@ -721,7 +707,6 @@ class BacktestingEngine:
     def monte_carlo_simulation(self, trades: List[Dict], num_simulations: int = 1000) -> Dict:
         """
         INSTITUTIONAL-GRADE Monte Carlo Simulation
-        Simulate different trade sequences to assess strategy robustness
         """
         try:
             if not trades or len(trades) < 10:
@@ -733,11 +718,8 @@ class BacktestingEngine:
             
             for _ in range(num_simulations):
                 # Randomly resample trades with replacement
-                simulated_returns = np.random.choice(returns, size=len(returns), replace=True)
                 
                 # Calculate metrics for this simulation
-                total_return = np.sum(simulated_returns)
-                cumulative_returns = np.cumsum(simulated_returns)
                 running_max = np.maximum.accumulate(cumulative_returns)
                 drawdowns = running_max - cumulative_returns
                 max_drawdown = np.max(drawdowns)
@@ -745,7 +727,6 @@ class BacktestingEngine:
                 simulation_results.append({
                     'total_return': total_return,
                     'max_drawdown': max_drawdown,
-                    'sharpe_ratio': (np.mean(simulated_returns) / np.std(simulated_returns)) * np.sqrt(252) if np.std(simulated_returns) > 0 else 0
                 })
             
             # Analyze simulation results

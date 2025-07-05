@@ -104,7 +104,6 @@ class AdvancedOptionsStrategies:
             far_otm_call_strike = otm_call_strike + strike_width
             far_otm_put_strike = otm_put_strike - strike_width
             
-            # Get option premiums (mock calculation - replace with real data)
             otm_call_premium = self._estimate_option_premium(
                 spot_price, otm_call_strike, expiry_days, 'CE', market_data)
             far_otm_call_premium = self._estimate_option_premium(

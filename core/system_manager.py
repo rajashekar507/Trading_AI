@@ -12,6 +12,8 @@ from analysis.signal_engine import TradeSignalEngine
 from analysis.multi_timeframe import MultiTimeframeAnalyzer
 from analysis.pattern_detection import PatternDetector
 from analysis.support_resistance import SupportResistanceCalculator
+from analysis.ai_market_analyst import AIMarketAnalyst
+from ml.adaptive_learning_system import AdaptiveLearningSystem
 from strategies.orb_strategy import ORBStrategy
 from execution.trade_executor import TradeExecutor
 from risk.risk_manager import RiskManager
@@ -22,7 +24,7 @@ from utils.error_recovery import ErrorRecoverySystem
 from utils.memory_manager import MemoryManager
 from auth.kite_auth_manager import KiteAuthManager as KiteAuthenticator
 from utils.github_auto_push import GitHubAutoPush
-from utils.auto_backup import backup_after_improvement, backup_after_fix
+# Auto backup functionality removed during cleanup
 
 logger = logging.getLogger('trading_system.system_manager')
 
@@ -50,6 +52,10 @@ class TradingSystemManager:
         self.trade_executor = None
         self.risk_manager = None
         self.backtesting_engine = None
+        
+        # Advanced AI components
+        self.ai_market_analyst = None
+        self.adaptive_learning = None
         
         self.running = False
         self.cycle_count = 0
@@ -222,6 +228,17 @@ class TradingSystemManager:
             self.risk_manager = RiskManager(self.settings)
             self.backtesting_engine = BacktestingEngine(self.kite_client)
             
+            # Initialize advanced AI components
+            logger.info("[AI] Initializing advanced AI components...")
+            self.ai_market_analyst = AIMarketAnalyst(self.settings)
+            self.adaptive_learning = AdaptiveLearningSystem(self.settings)
+            
+            # Initialize adaptive learning system
+            if await self.adaptive_learning.initialize():
+                logger.info("[AI] Adaptive learning system initialized")
+            else:
+                logger.warning("[AI] Adaptive learning system initialization failed")
+            
             if self.telegram_notifier:
                 await self.telegram_notifier.send_message(
                     " **INSTITUTIONAL-GRADE TRADING SYSTEM STARTED**\n\n"
@@ -264,7 +281,55 @@ class TradingSystemManager:
             if hasattr(self.signal_engine, 'cleanup_expired_signals'):
                 self.signal_engine.cleanup_expired_signals()
             
+            # Get AI market analysis
+            ai_analysis = {}
+            news_data = {}
+            if self.ai_market_analyst:
+                try:
+                    # Get news data from data manager
+                    if hasattr(self.data_manager, 'news_analyzer') and self.data_manager.news_analyzer:
+                        news_data = await self.data_manager.news_analyzer.fetch_data()
+                    
+                    # Get comprehensive AI analysis
+                    ai_analysis = await self.ai_market_analyst.analyze_market_conditions(enhanced_data, news_data)
+                    logger.info(f"[AI] AI Analysis: {ai_analysis.get('overall_recommendation', 'NEUTRAL')} "
+                               f"(Confidence: {ai_analysis.get('confidence_score', 0.0):.2f})")
+                except Exception as e:
+                    logger.warning(f"[AI] AI analysis failed: {e}")
+            
+            # Generate signals with AI enhancement
             signals = await self.signal_engine.generate_signals(enhanced_data)
+            
+            # Enhance signals with AI predictions
+            if self.adaptive_learning and ai_analysis:
+                enhanced_signals = []
+                for signal in signals:
+                    try:
+                        # Get AI prediction for this signal
+                        market_conditions = enhanced_data.get('market_conditions', {})
+                        technical_indicators = signal.get('technical_indicators', {})
+                        
+                        prediction = await self.adaptive_learning.predict_trade_success(
+                            market_conditions, news_data, technical_indicators, ai_analysis
+                        )
+                        
+                        # Enhance signal with AI prediction
+                        signal['ai_prediction'] = prediction
+                        signal['ai_success_probability'] = prediction.get('success_probability', 0.5)
+                        signal['ai_recommendation'] = prediction.get('recommendation', 'NEUTRAL')
+                        
+                        # Adjust signal strength based on AI prediction
+                        original_strength = signal.get('strength', 50)
+                        ai_adjustment = (prediction.get('success_probability', 0.5) - 0.5) * 100
+                        signal['strength'] = max(0, min(100, original_strength + ai_adjustment))
+                        
+                        enhanced_signals.append(signal)
+                        
+                    except Exception as e:
+                        logger.warning(f"[AI] Signal enhancement failed: {e}")
+                        enhanced_signals.append(signal)
+                
+                signals = enhanced_signals
             
             validated_signals = []
             risk_filtered_signals = []

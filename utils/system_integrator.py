@@ -1,7 +1,6 @@
 """
 System Integration Module for VLR_AI Trading System
 Integrates all enhanced components for REAL market data processing
-IMPORTANT: Coordinates REAL trading operations - NO mock data, NO simulations
 """
 
 import asyncio

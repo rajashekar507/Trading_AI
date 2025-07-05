@@ -1,0 +1,159 @@
+{
+  "timestamp": "2025-07-05T06:54:17.310089",
+  "overall_score": 100.0,
+  "tests_passed": 5,
+  "total_tests": 5,
+  "detailed_results": {
+    "Stealth Web Intelligence": {
+      "success": true,
+      "news_count": 4,
+      "calendar_count": 0,
+      "intelligence_data": true,
+      "features_tested": [
+        "news_fetching",
+        "economic_calendar",
+        "social_sentiment",
+        "comprehensive_intelligence"
+      ]
+    },
+    "Enhanced News Sentiment": {
+      "success": true,
+      "sentiment_data": {
+        "news_sentiment": "bullish",
+        "market_sentiment": 60,
+        "news_count": 4,
+        "sentiment_score": 0.2044864311581161,
+        "market_mood": "mixed",
+        "risk_factors": [],
+        "important_events": [],
+        "last_update": "2025-07-05 06:54:06.795036",
+        "intelligence_data": {
+          "timestamp": "2025-07-05 06:54:06.795036",
+          "news_items": [
+            {
+              "source": "Economic Times",
+              "headline": "Ola, Paytm, Swiggy fall up to 50% in '25: Are your tech bets still worthy?",
+              "timestamp": "2025-07-05 06:54:01.676802",
+              "url": "https://economictimes.indiatimes.com/markets",
+              "sentiment": {
+                "sentiment": "neutral",
+                "score": 0.0,
+                "confidence": 0.1
+              }
+            },
+            {
+              "source": "Economic Times",
+              "headline": "Sebi expected to widen Jane Street probe to other indices, exchanges",
+              "timestamp": "2025-07-05 06:54:01.676802",
+              "url": "https://economictimes.indiatimes.com/markets",
+              "sentiment": {
+                "sentiment": "neutral",
+                "score": 0.0,
+                "confidence": 0.1
+              }
+            },
+            {
+              "source": "Economic Times",
+              "headline": "Stock Recommendations",
+              "timestamp": "2025-07-05 06:54:01.676802",
+              "url": "https://economictimes.indiatimes.com/markets",
+              "sentiment": {
+                "sentiment": "neutral",
+                "score": 0.0,
+                "confidence": 0.1
+              }
+            },
+            {
+              "source": "Economic Times",
+              "headline": "CompaniesNews That's Moving Your Stocks",
+              "timestamp": "2025-07-05 06:54:01.676802",
+              "url": "https://economictimes.indiatimes.com/markets",
+              "sentiment": {
+                "sentiment": "neutral",
+                "score": 0.0,
+                "confidence": 0.1
+              }
+            }
+          ],
+          "economic_events": [],
+          "social_sentiment": {
+            "overall_sentiment": "bullish",
+            "sentiment_score": 0.6816214371937204,
+            "volume": 6367,
+            "trending_topics": [
+              "NIFTY",
+              "BANKNIFTY",
+              "RBI",
+              "FII",
+              "DII"
+            ],
+            "timestamp": "2025-07-05 06:53:59.431760"
+          },
+          "overall_sentiment": {
+            "sentiment": "bullish",
+            "score": 0.2044864311581161,
+            "confidence": 0.5044864311581161,
+            "news_sentiment": 0.0,
+            "social_sentiment": 0.6816214371937204
+          },
+          "important_events": [],
+          "market_mood": "mixed",
+          "risk_factors": []
+        }
+      },
+      "has_real_data": true,
+      "features_tested": [
+        "initialization",
+        "data_fetching",
+        "sentiment_analysis"
+      ]
+    },
+    "AI Market Analyst": {
+      "success": true,
+      "analysis_complete": true,
+      "recommendation": "NEUTRAL",
+      "confidence": 0.9,
+      "features_tested": [
+        "technical_analysis",
+        "sentiment_analysis",
+        "market_research",
+        "trading_insights"
+      ]
+    },
+    "Adaptive Learning System": {
+      "success": true,
+      "prediction_available": true,
+      "strategy_recommendation": "ORB_STRATEGY",
+      "insights_generated": true,
+      "features_tested": [
+        "trade_recording",
+        "success_prediction",
+        "strategy_recommendation",
+        "learning_insights"
+      ]
+    },
+    "Integration Test": {
+      "success": true,
+      "component_init_results": {
+        "stealth_intelligence": true,
+        "news_analyzer": true,
+        "ai_analyst": true,
+        "adaptive_learning": true
+      },
+      "data_flow_success": true,
+      "integration_score": 100.0,
+      "features_tested": [
+        "component_initialization",
+        "data_flow",
+        "integration"
+      ]
+    }
+  },
+  "features_status": {
+    "Web Intelligence": true,
+    "Real-time News": true,
+    "AI Market Analysis": true,
+    "Adaptive Learning": true,
+    "System Integration": true
+  }
+}

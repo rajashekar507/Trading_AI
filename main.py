@@ -264,9 +264,7 @@ async def run_paper_trading_mode(settings):
         
         print(" Starting paper trading...")
         print(" 💰 Virtual Money Trading - NO REAL MONEY AT RISK")
-        print(" 📊 All strategies active with simulated execution")
         print(" 📱 Telegram alerts enabled for paper trades")
-        print(" 🔄 Real market data with simulated trading")
         print("=" * 50)
         
         # Override the trade executor with paper trading executor

@@ -1,7 +1,6 @@
 """
 System Validator for VLR_AI Trading System
 Real data validation and system health checks
-IMPORTANT: Only validates with REAL market data - NO mock data
 """
 
 import asyncio

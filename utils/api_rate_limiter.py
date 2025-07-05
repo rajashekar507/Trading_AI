@@ -1,7 +1,6 @@
 """
 API Rate Limiting System for VLR_AI Trading System
 Implements rate limiting, request queuing, and API usage monitoring for REAL market data
-IMPORTANT: This system only works with REAL APIs - NO mock data, NO simulations
 """
 
 import asyncio
