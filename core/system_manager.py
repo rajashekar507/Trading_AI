@@ -20,7 +20,7 @@ from notifications.telegram_notifier import TelegramNotifier
 from utils.sheets_integration_service import SheetsIntegrationService
 from utils.error_recovery import ErrorRecoverySystem
 from utils.memory_manager import MemoryManager
-from auth.enhanced_kite_auth import EnhancedKiteAuthenticator as KiteAuthenticator
+from auth.kite_auth_manager import KiteAuthManager as KiteAuthenticator
 from utils.github_auto_push import GitHubAutoPush
 from utils.auto_backup import backup_after_improvement, backup_after_fix
 
@@ -188,10 +188,9 @@ class TradingSystemManager:
         try:
             logger.info(" Initializing institutional-grade system components...")
             
-            if not await self.kite_auth.initialize():
-                logger.warning("[WARNING] Kite authentication initialization failed")
+            logger.info("[AUTH] Starting enhanced Kite authentication...")
             
-            self.kite_client = self.kite_auth.get_authenticated_kite()
+            self.kite_client = self.kite_auth.get_authenticated_client()
             if not self.kite_client:
                 logger.warning("[WARNING] Kite client not available - some features will be limited")
             else:
