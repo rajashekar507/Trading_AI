@@ -332,12 +332,11 @@ python -m pytest --cov=src tests/
 ### **Documentation**
 - 📚 **Setup Guide**: [docs/SETUP.md](docs/SETUP.md)
 - 🔧 **API Reference**: [docs/API_REFERENCE.md](docs/API_REFERENCE.md)
-- 💡 **Examples**: [examples/](examples/)
 
 ### **Community**
 - 💬 **Discussions**: GitHub Discussions
 - 🐛 **Issues**: GitHub Issues
-- 📧 **Email**: support@vlr-ai.com
+- 📧 **Email**:chinnareddymuskula@gmail.com
 
 ---
 
