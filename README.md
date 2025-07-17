@@ -13,6 +13,7 @@
 ## 🖥️ **OUTPUT**
 
 ![Output_1](https://github.com/user-attachments/assets/dd3bb3a0-ddfb-42a1-8877-0bde6bc23586)
+![Output_2](https://github.com/user-attachments/assets/d8d653ed-e184-4996-8a7a-2e842f665d7a)
 
 
 ## 🎯 **SYSTEM OVERVIEW**
