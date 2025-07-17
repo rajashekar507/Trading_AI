@@ -10,6 +10,10 @@
 > **Professional algorithmic trading system with AI-powered market analysis, real-time execution, and comprehensive risk management.**
 
 ---
+## 🖥️ **OUTPUT**
+
+![Output_1](https://github.com/user-attachments/assets/dd3bb3a0-ddfb-42a1-8877-0bde6bc23586)
+
 
 ## 🎯 **SYSTEM OVERVIEW**
 
